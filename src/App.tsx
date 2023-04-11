@@ -1,13 +1,13 @@
 import { GlobalStyle } from 'components/ContainerClock/Clock/index.styles';
 
-import Clock from './components/ContainerClock/Clock';
+import ContainerClock from 'components/ContainerClock';
 import './App.css';
 
 const App = () => {
 	return (
 		<div className="App">
 			<GlobalStyle />
-			<Clock />
+      <ContainerClock/>
 		</div>
 	);
 };
