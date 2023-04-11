@@ -11,6 +11,12 @@ const ContainerClock = () => {
 
 		const response = axios.get(
 			`https://www.timeapi.io/api/Time/current/coordinate?latitude=${latitudeBlr}&longitude=${longitudeBlr}`,
+			{
+				headers: {
+					'Access-Control-Allow-Origin': '*',
+					'Content-Type': 'application/json',
+				},
+			},
 		);
 		console.log('response', response);
 	}, []);
