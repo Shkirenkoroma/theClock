@@ -1,39 +1,47 @@
 import { FC, useEffect, useState } from 'react';
 import { ClockLoader } from 'react-spinners';
 import {
-	IData,
 	getHoursIntoDegrees,
 	getLocalTime,
 	getSecAndMinIntoDegrees,
-} from 'utils/api';
+} from 'api';
 import { CircleProgressiveBar } from 'components/ProgressiveBar';
-
 import Clock from './Clock';
 import * as S from './index.styles';
 
 const ContainerClock: FC = (): JSX.Element => {
-	const [currentData, setCurrentData] = useState<IData>();
-	const { hour_12_wolz, minutes, seconds } = currentData?.data?.datetime ?? {};
-	const transformSecond = getSecAndMinIntoDegrees(Number(seconds));
-	const transformMinute = getSecAndMinIntoDegrees(Number(minutes));
+	const [date, setDate] = useState<Date>();
+	const transformSecond = getSecAndMinIntoDegrees(date?.getSeconds());
+	const transformMinute = getSecAndMinIntoDegrees(date?.getMinutes());
 	const transformHours = getHoursIntoDegrees(
-		Number(hour_12_wolz),
-		Number(minutes),
+		date?.getHours(),
+		date?.getMinutes(),
 	);
-	
-	const getLocalData = async () => {
-		const time = await getLocalTime();
-		setCurrentData(time);
-	};
-	
+
 	useEffect(() => {
-		const timer = setInterval(() => getLocalData(), 1000);
-		return () => clearInterval(timer);
+		const getLocalData = async () => {
+			const time = await getLocalTime();
+			const currentDate = time!.data.datetime.date_time;
+			setDate(new Date(currentDate));
+		};
+		getLocalData();
 	}, []);
+
+	useEffect(() => {
+		if (date) {
+			const timer = setTimeout(() => {
+				const newDate = new Date(date);
+				newDate.setSeconds(newDate.getSeconds() + 1);
+				setDate(newDate);
+			}, 1000);
+
+			return () => clearTimeout(timer);
+		}
+	}, [date]);
 
 	return (
 		<S.Container>
-			{!seconds ? (
+			{!date ? (
 				<ClockLoader color="#36d7b7" size="150" loading={true} />
 			) : (
 				<>
@@ -42,7 +50,7 @@ const ContainerClock: FC = (): JSX.Element => {
 						minutes={transformMinute}
 						seconds={transformSecond}
 					/>
-					<CircleProgressiveBar hours={transformHours} />
+					<CircleProgressiveBar hours={transformHours!} />
 				</>
 			)}
 		</S.Container>

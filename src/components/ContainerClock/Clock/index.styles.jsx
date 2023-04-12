@@ -1,22 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components';
 import backgroundImage from 'img/backgroundclock.png';
-
-export const GlobalStyle = createGlobalStyle`
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-body {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	background: linear-gradient(#796d6d, #948989);
-	font-family: 'Sedgwick Ave Display', cursive;
-}
-`;
 
 export const Container = styled.div`
 	display: flex;

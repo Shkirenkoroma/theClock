@@ -9,10 +9,7 @@ interface IDataTime {
 }
 
 interface ICurrentTime {
-	hour_12_wolz: string;
-	minutes: string;
-	seconds: string;
-	date_time_txt:string,
+	date_time: string;
 }
 
 export const getLocalTime = async (): Promise<IData | undefined> => {
@@ -40,5 +37,11 @@ export const getSecAndMinIntoDegrees = (
 	}
 };
 
-export const getHoursIntoDegrees = (hours: number, minute: number): number =>
-	hours * 30 + Math.ceil(minute / 2);
+export const getHoursIntoDegrees = (
+	hours: number | undefined,
+	minute: number | undefined,
+): number | undefined => {
+	if (hours !== undefined && minute !== undefined) {
+		return hours * 30 + Math.ceil(minute / 2);
+	}
+};

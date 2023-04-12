@@ -1,6 +1,4 @@
 import { FC } from 'react';
-
-import './index.styles.jsx';
 import * as S from './index.styles.jsx';
 
 interface ICircleProgressiveBarProps {
