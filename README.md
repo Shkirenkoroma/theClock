@@ -1,2 +1,2 @@
 #### Live-версия проекта доступна по ссылке https://shkirenkoroma.github.io/theClock/
-![image](https://user-images.githubusercontent.com/61347452/231553295-6bdfc33f-e15c-4872-95d5-4c484733760b.png)
+![image](https://user-images.githubusercontent.com/61347452/231553408-3a5ff766-7880-4237-93aa-177b90c6db72.png)
