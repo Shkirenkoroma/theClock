@@ -1,29 +1,40 @@
-import { useEffect } from 'react';
-import axios from 'axios';
+import { FC, useEffect, useState } from 'react';
+import {
+	IData,
+	getHoursIntoDegrees,
+	getLocalTime,
+	getSecAndMinIntoDegrees,
+} from 'utils/api';
+import { CircleProgressiveBar } from 'components/ProgressiveBar';
 
 import Clock from './Clock';
 import * as S from './index.styles';
 
-const ContainerClock = () => {
+const ContainerClock:FC = ():JSX.Element => {
+	const [currentData, setCurrentData] = useState<any>({});
+	const { hour_12_wolz, minutes, seconds } = currentData?.data?.datetime ?? {};
+	const transformSecond = getSecAndMinIntoDegrees(+(seconds));
+	const transformMinute = getSecAndMinIntoDegrees(+(minutes));
+	const transformHours = getHoursIntoDegrees(+(hour_12_wolz), +(minutes));
+	
 	useEffect(() => {
-		const latitudeBlr = 53.31;
-		const longitudeBlr = 28.02;
-
-		const response = axios.get(
-			`https://www.timeapi.io/api/Time/current/coordinate?latitude=${latitudeBlr}&longitude=${longitudeBlr}`,
-			{
-				headers: {
-					'Access-Control-Allow-Origin': '*',
-					'Content-Type': 'application/json',
-				},
-			},
-		);
-		console.log('response', response);
+		getLocalTime(setCurrentData);
 	}, []);
+
+	useEffect(() => {
+		const timer = setInterval(() => getLocalTime(setCurrentData), 1000);
+		return () => clearInterval(timer);
+	}, []);
+
 
 	return (
 		<S.Container>
-			<Clock />
+			<Clock
+				hours={transformHours}
+				minutes={transformMinute}
+				seconds={transformSecond}
+			/>
+				<CircleProgressiveBar transformHours={transformHours}/>
 		</S.Container>
 	);
 };

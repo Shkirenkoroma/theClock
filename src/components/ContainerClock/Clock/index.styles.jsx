@@ -62,6 +62,7 @@ export const Hour = styled.div`
 		background-color: #ffc600;
 	}
 `;
+
 export const Minute = styled.div`
 	position: absolute;
 	display: flex;
@@ -79,10 +80,11 @@ export const Minute = styled.div`
 		background-color: #fff;
 	}
 `;
+
 export const Second = styled.div`
+	position: absolute;
 	display: flex;
 	justify-content: center;
-	position: absolute;
 	width: 230px;
 	height: 230px;
 	border-radius: 50%;
@@ -96,3 +98,5 @@ export const Second = styled.div`
 		background-color: #fff;
 	}
 `;
+
+

@@ -1,30 +1,19 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 import * as S from './index.styles';
 
-const Clock: FC = (): JSX.Element => {
-	const [degreesSecond, setDegreesSecond] = useState<number>(0);
-	const [degreesMinute, setDegreesMinute] = useState<number>(0);
-	const [degreesHours, setDegreesHours] = useState<number>(0);
+interface IProps {
+	hours: number;
+	minutes: number;
+	seconds: number;
+}
 
-	useEffect(() => {
-		const timer = setInterval(() => setDegreesSecond((prev) => prev + 6), 1000);
-		return () => clearInterval(timer);
-	}, []);
-
-	useEffect(() => {
-		const timer = setInterval(
-			() => setDegreesMinute((prev) => prev + 6),
-			61000,
-		);
-		return () => clearInterval(timer);
-	}, []);
-
+const Clock: FC<IProps> = ({ hours, minutes, seconds }): JSX.Element => {
 	return (
 		<S.Container>
-			<S.Hour style={{ transform: `rotate(${degreesHours}deg)` }}></S.Hour>
-			<S.Minute style={{ transform: `rotate(${degreesMinute}deg)` }}></S.Minute>
-			<S.Second style={{ transform: `rotate(${degreesSecond}deg)` }}></S.Second>
+			<S.Hour style={{ transform: `rotate(${hours}deg)` }}></S.Hour>
+			<S.Minute style={{ transform: `rotate(${minutes}deg)` }}></S.Minute>
+			<S.Second style={{ transform: `rotate(${seconds}deg)` }}></S.Second>
 		</S.Container>
 	);
 };

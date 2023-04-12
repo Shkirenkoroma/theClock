@@ -1,0 +1,19 @@
+.circle-background {
+	fill: none;
+	stroke: #343232;
+}
+
+.circle-progress {
+	fill: none;
+	stroke: #ffc600;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+svg {
+	position: absolute;
+	top: -28px;
+	left: -75px;
+	width: 500px;
+	height: 405px;
+}

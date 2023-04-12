@@ -1,14 +1,15 @@
+import { FC } from 'react';
 import { GlobalStyle } from 'components/ContainerClock/Clock/index.styles';
 
 import ContainerClock from 'components/ContainerClock';
-import './App.css';
 
-const App = () => {
+const App: FC = (): JSX.Element => {
 	return (
-		<div className="App">
+		<>
 			<GlobalStyle />
-      <ContainerClock/>
-		</div>
+			<ContainerClock />
+		
+		</>
 	);
 };
 
