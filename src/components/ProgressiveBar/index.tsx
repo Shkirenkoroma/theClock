@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import './style.css';
+
 export const CircleProgressiveBar: FC<any> = ({
 	transformHours,
 }): JSX.Element => {
@@ -22,7 +23,6 @@ export const CircleProgressiveBar: FC<any> = ({
 					r={radius}
 					className="circle-background"
 				/>
-
 				<circle
 					cx={circleWidth / 2}
 					cy={circleWidth / 2}

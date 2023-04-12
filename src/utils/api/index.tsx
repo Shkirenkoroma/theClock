@@ -20,9 +20,7 @@ interface ICurrentTime {
 	seconds: string;
 }
 
-export const getLocalTime = async (
-	setCurrentData: any,
-): Promise<any> => {
+export const getLocalTime = async (setCurrentData: any): Promise<any> => {
 	try {
 		const response = await fetch(
 			`${basicUrl}?${region}/${city}&token=${ownToken}`,

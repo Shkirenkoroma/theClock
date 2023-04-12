@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from 'react';
 import {
-	IData,
 	getHoursIntoDegrees,
 	getLocalTime,
 	getSecAndMinIntoDegrees,
@@ -10,13 +9,13 @@ import { CircleProgressiveBar } from 'components/ProgressiveBar';
 import Clock from './Clock';
 import * as S from './index.styles';
 
-const ContainerClock:FC = ():JSX.Element => {
+const ContainerClock: FC = (): JSX.Element => {
 	const [currentData, setCurrentData] = useState<any>({});
 	const { hour_12_wolz, minutes, seconds } = currentData?.data?.datetime ?? {};
-	const transformSecond = getSecAndMinIntoDegrees(+(seconds));
-	const transformMinute = getSecAndMinIntoDegrees(+(minutes));
-	const transformHours = getHoursIntoDegrees(+(hour_12_wolz), +(minutes));
-	
+	const transformSecond = getSecAndMinIntoDegrees(+seconds);
+	const transformMinute = getSecAndMinIntoDegrees(+minutes);
+	const transformHours = getHoursIntoDegrees(+hour_12_wolz, +minutes);
+
 	useEffect(() => {
 		getLocalTime(setCurrentData);
 	}, []);
@@ -26,7 +25,6 @@ const ContainerClock:FC = ():JSX.Element => {
 		return () => clearInterval(timer);
 	}, []);
 
-
 	return (
 		<S.Container>
 			<Clock
@@ -34,7 +32,7 @@ const ContainerClock:FC = ():JSX.Element => {
 				minutes={transformMinute}
 				seconds={transformSecond}
 			/>
-				<CircleProgressiveBar transformHours={transformHours}/>
+			<CircleProgressiveBar transformHours={transformHours} />
 		</S.Container>
 	);
 };

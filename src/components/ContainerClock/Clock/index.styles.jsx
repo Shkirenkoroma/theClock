@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import backgroundImage from 'img/backgroundclock.png';
 
 export const GlobalStyle = createGlobalStyle`
@@ -98,5 +98,3 @@ export const Second = styled.div`
 		background-color: #fff;
 	}
 `;
-
-

@@ -9,6 +9,7 @@ interface IProps {
 }
 
 const Clock: FC<IProps> = ({ hours, minutes, seconds }): JSX.Element => {
+	
 	return (
 		<S.Container>
 			<S.Hour style={{ transform: `rotate(${hours}deg)` }}></S.Hour>

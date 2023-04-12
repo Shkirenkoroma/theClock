@@ -8,7 +8,6 @@ const App: FC = (): JSX.Element => {
 		<>
 			<GlobalStyle />
 			<ContainerClock />
-		
 		</>
 	);
 };
