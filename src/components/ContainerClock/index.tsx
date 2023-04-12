@@ -1,5 +1,7 @@
 import { FC, useEffect, useState } from 'react';
+import { ClockLoader } from 'react-spinners';
 import {
+	IData,
 	getHoursIntoDegrees,
 	getLocalTime,
 	getSecAndMinIntoDegrees,
@@ -10,29 +12,39 @@ import Clock from './Clock';
 import * as S from './index.styles';
 
 const ContainerClock: FC = (): JSX.Element => {
-	const [currentData, setCurrentData] = useState<any>({});
+	const [currentData, setCurrentData] = useState<IData>();
 	const { hour_12_wolz, minutes, seconds } = currentData?.data?.datetime ?? {};
-	const transformSecond = getSecAndMinIntoDegrees(+seconds);
-	const transformMinute = getSecAndMinIntoDegrees(+minutes);
-	const transformHours = getHoursIntoDegrees(+hour_12_wolz, +minutes);
-
+	const transformSecond = getSecAndMinIntoDegrees(Number(seconds));
+	const transformMinute = getSecAndMinIntoDegrees(Number(minutes));
+	const transformHours = getHoursIntoDegrees(
+		Number(hour_12_wolz),
+		Number(minutes),
+	);
+	
+	const getLocalData = async () => {
+		const time = await getLocalTime();
+		setCurrentData(time);
+	};
+	
 	useEffect(() => {
-		getLocalTime(setCurrentData);
-	}, []);
-
-	useEffect(() => {
-		const timer = setInterval(() => getLocalTime(setCurrentData), 1000);
+		const timer = setInterval(() => getLocalData(), 1000);
 		return () => clearInterval(timer);
 	}, []);
 
 	return (
 		<S.Container>
-			<Clock
-				hours={transformHours}
-				minutes={transformMinute}
-				seconds={transformSecond}
-			/>
-			<CircleProgressiveBar transformHours={transformHours} />
+			{!seconds ? (
+				<ClockLoader color="#36d7b7" size="150" loading={true} />
+			) : (
+				<>
+					<Clock
+						hours={transformHours}
+						minutes={transformMinute}
+						seconds={transformSecond}
+					/>
+					<CircleProgressiveBar hours={transformHours} />
+				</>
+			)}
 		</S.Container>
 	);
 };

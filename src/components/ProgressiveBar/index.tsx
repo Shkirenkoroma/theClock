@@ -1,29 +1,35 @@
 import { FC } from 'react';
-import './style.css';
 
-export const CircleProgressiveBar: FC<any> = ({
-	transformHours,
+import './index.styles.jsx';
+import * as S from './index.styles.jsx';
+
+interface ICircleProgressiveBarProps {
+	hours: number;
+}
+
+export const CircleProgressiveBar: FC<ICircleProgressiveBarProps> = ({
+	hours,
 }): JSX.Element => {
 	const circleWidth = 200;
 	const radius = 85;
 	const dashArray = radius * Math.PI * 2;
-	const dashOffset = dashArray - (dashArray * transformHours) / 360;
+	const dashOffset = dashArray - (dashArray * hours) / 360;
 
 	return (
-		<div className="container">
-			<svg
+		<S.Container>
+			<S.SVGContainer
 				width={circleWidth}
 				height={circleWidth}
 				viewBox={`0 0 ${circleWidth} ${circleWidth}`}
 			>
-				<circle
+				<S.Circle
 					cx={circleWidth / 2}
 					cy={circleWidth / 2}
 					strokeWidth="4px"
 					r={radius}
 					className="circle-background"
 				/>
-				<circle
+				<S.CircleProgress
 					cx={circleWidth / 2}
 					cy={circleWidth / 2}
 					strokeWidth="4px"
@@ -35,7 +41,7 @@ export const CircleProgressiveBar: FC<any> = ({
 					}}
 					transform={`rotate(-90 ${circleWidth / 2} ${circleWidth / 2})`}
 				/>
-			</svg>
-		</div>
+			</S.SVGContainer>
+		</S.Container>
 	);
 };

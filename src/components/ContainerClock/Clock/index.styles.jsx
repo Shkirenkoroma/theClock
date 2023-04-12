@@ -13,7 +13,8 @@ body {
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
-	background: #091921;
+	background: linear-gradient(#796d6d, #948989);
+	font-family: 'Sedgwick Ave Display', cursive;
 }
 `;
 
@@ -32,8 +33,8 @@ export const Container = styled.div`
 			rgba(9, 25, 33, 1) 38%
 		);
 	background-size: cover;
-	box-shadow: 0 -15px 15px rgba(134, 134, 134, 0.35), inset 0 -15px 15px #191919,
-		0 15px 15px rgba(134, 134, 134, 0.35), inset 0 15px 15px #191919;
+	box-shadow: 0 -15px 15px rgba(222, 222, 222, 0.35), inset 0 -15px 15px #858181,
+		0 15px 15px rgba(212, 200, 200, 0.35), inset 0 15px 15px #746f6f;
 	:before {
 		content: '';
 		position: absolute;
@@ -42,6 +43,11 @@ export const Container = styled.div`
 		height: 15px;
 		border-radius: 50%;
 		background-color: #ffffff;
+	}
+
+	@media (max-width: 560px) {
+		width: 230px;
+		height: 230px;
 	}
 `;
 

@@ -3,9 +3,9 @@ import { FC } from 'react';
 import * as S from './index.styles';
 
 interface IProps {
-	hours: number;
-	minutes: number;
-	seconds: number;
+	hours: number | undefined;
+	minutes: number | undefined;
+	seconds: number | undefined;
 }
 
 const Clock: FC<IProps> = ({ hours, minutes, seconds }): JSX.Element => {
