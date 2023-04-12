@@ -42,6 +42,10 @@ export const getHoursIntoDegrees = (
 	minute: number | undefined,
 ): number | undefined => {
 	if (hours !== undefined && minute !== undefined) {
-		return hours * 30 + Math.ceil(minute / 2);
+		let currentHours = hours * 30 + Math.ceil(minute / 2);
+		if (currentHours >= 360) {
+			return (currentHours = currentHours - 360);
+		}
+		return currentHours;
 	}
 };
