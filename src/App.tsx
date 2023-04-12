@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import ContainerClock from 'components/ContainerClock';
-
 import * as S from './App.styles';
 
 const App: FC = (): JSX.Element => {
